@@ -20,7 +20,7 @@ echo 'export GOROOT=/usr/local/go' >> ~/.profile
 echo 'export GOPATH=$HOME/go' >> ~/.profile
 echo 'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH' >> ~/.profile
 
-. ~/.profile
+source ~/.profile
 rm go1.19.3.linux-amd64.tar.gz
 
 
