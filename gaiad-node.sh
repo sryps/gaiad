@@ -33,6 +33,11 @@ make install
 
 gaiad init temp --chain-id temp-1
 
+rm ~/.gaia/config/genesis.json
+wget https://raw.githubusercontent.com/cosmos/mainnet/master/genesis/genesis.cosmoshub-4.json.gz
+gzip -d genesis.cosmoshub-4.json.gz
+mv genesis.cosmoshub-4.json ~/.gaia/config/genesis.json
+
 sed -i.bak -E "s|^(pruning[[:space:]]+=[[:space:]]+).*$|\1\"custom\"| ; \
 s|^(pruning-keep-every[[:space:]]+=[[:space:]]+).*$|\10| ; \
 s|^(minimum-gas-prices[[:space:]]+=[[:space:]]+).*$|\1\"0.002uatom\"| ; \
