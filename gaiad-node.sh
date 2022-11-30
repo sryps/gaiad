@@ -1,5 +1,5 @@
 #!/bin/bash
-### TESTED WITH UBUNTU 20.04
+### TESTED WITH Debian 11 x64
 ### Run as root but not best practises - TESTING ONLY
 
 set -e
@@ -78,7 +78,10 @@ StandardError=journal
 WantedBy=multi-user.target
 EOF
 source ~/.profile
+
+echo "Storage=auto" >> /etc/systemd/journald.conf
 systemctl daemon-reload
+systemctl restart systemd-journald
 systemctl enable gaiad
 systemctl start gaiad
 
