@@ -72,6 +72,8 @@ User=root
 ExecStart=/root/go/bin/gaiad start
 Restart=always
 RestartSec=10
+StandardOutput=journal
+StandardError=journal
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -79,3 +81,5 @@ source ~/.profile
 systemctl daemon-reload
 systemctl enable gaiad
 systemctl start gaiad
+
+journalctl --output cat -u gaiad.service -f
