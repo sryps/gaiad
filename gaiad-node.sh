@@ -6,10 +6,12 @@ set -e
 cd
 clear
 
+echo "update packages and install dependencies..."
 sudo apt update -y
 sudo apt-get install -y make gcc jq git
 
 # INSTALL GOLANG
+echo "install go..."
 curl -OL https://golang.org/dl/go1.19.3.linux-amd64.tar.gz
 
 sudo tar -C /usr/local -xvf go1.19.3.linux-amd64.tar.gz
@@ -23,6 +25,7 @@ rm go1.19.3.linux-amd64.tar.gz
 
 
 # INSTALL GAIAD
+echo "install gaiad"
 cd ~
 git clone -b v7.1.0 https://github.com/cosmos/gaia
 cd ~/gaia 
@@ -51,7 +54,7 @@ s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.gaia/config/config.toml
 
 
-
+echo "create systemd service & start syncing..."
 cat > /etc/systemd/system/gaiad.service << EOF
 [Unit]
 Description=gaiad
