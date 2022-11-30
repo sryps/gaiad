@@ -3,13 +3,14 @@
 ### Run as root but not best practises - TESTING ONLY
 
 set -e
-
+cd
 clear
 
 sudo apt update -y
 sudo apt-get install -y make gcc jq git
 
 # INSTALL GOLANG
+if [[ $(go version) == *not* ]]; then
 curl -OL https://golang.org/dl/go1.19.3.linux-amd64.tar.gz
 
 sudo tar -C /usr/local -xvf go1.19.3.linux-amd64.tar.gz
@@ -19,6 +20,8 @@ echo 'export GOPATH=$HOME/go' >> ~/.profile
 echo 'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH' >> ~/.profile
 
 . ~/.profile
+rm go1.19.3.linux-amd64.tar.gz
+fi
 
 # INSTALL GAIAD
 cd ~
