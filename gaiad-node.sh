@@ -1,5 +1,5 @@
 #!/bin/bash
-### TESTED WITH UBUNTU 22.04
+### TESTED WITH UBUNTU 20.04
 ### Run as root but not best practises - TESTING ONLY
 
 set -e
