@@ -61,13 +61,13 @@ Description=gaiad
 Wants=network-online.target
 [Service]
 User=root
-ExecStart=/usr/local/bin/gaiad start
+ExecStart=/root/go/bin/gaiad start
 Restart=always
 RestartSec=10
 [Install]
 WantedBy=multi-user.target
 EOF
-
+source ~/.profile
 systemctl enable gaiad
 systemctl start gaiad
 journalctl -u gaiad.service -f
