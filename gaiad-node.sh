@@ -79,4 +79,3 @@ source ~/.profile
 systemctl daemon-reload
 systemctl enable gaiad
 systemctl start gaiad
-journalctl -u gaiad.service -f
