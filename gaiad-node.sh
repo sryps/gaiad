@@ -67,6 +67,7 @@ cat > /etc/systemd/system/gaiad.service << EOF
 [Unit]
 Description=gaiad
 Wants=network-online.target
+After=network-online.target
 [Service]
 User=root
 ExecStart=/root/go/bin/gaiad start
