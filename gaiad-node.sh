@@ -63,7 +63,6 @@ s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(pex[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(external_address[[:space:]]+=[[:space:]]+).*$|\1\"${IP_A}:26656\"| ; \
-s|^(laddr[[:space:]]+=[[:space:]]+).*$|\1\"tcp://0.0.0.0:26657\"| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.gaia/config/config.toml
 
 
@@ -74,7 +73,7 @@ Description=gaiad
 After=network-online.target
 [Service]
 User=root
-ExecStart=/root/go/bin/gaiad start
+ExecStart=/root/go/bin/gaiad start --rpc.laddr="tcp://0.0.0.0:26657"
 Restart=always
 RestartSec=10
 StandardOutput=journal
