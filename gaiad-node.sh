@@ -65,6 +65,8 @@ s|^(pex[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(external_address[[:space:]]+=[[:space:]]+).*$|\1\"${IP_A}:26656\"| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.gaia/config/config.toml
 
+wget -O addrbook.json https://snapshots.polkachu.com/addrbook/cosmos/addrbook.json --inet4-only
+mv addrbook.json ~/.gaia/config
 
 echo "create systemd service & start syncing..."
 cat > /etc/systemd/system/gaiad.service << EOF
