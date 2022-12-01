@@ -56,9 +56,14 @@ LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
 TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
 
+IP_A=$(curl ifconfig.me)
+
 sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(pex[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(external_address[[:space:]]+=[[:space:]]+).*$|\1\"$IP_A\"| ; \
+s|^(laddr[[:space:]]+=[[:space:]]+).*$|\1\"tcp://0.0.0.0:26657\"| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.gaia/config/config.toml
 
 
